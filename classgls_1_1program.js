@@ -1,6 +1,5 @@
 var classgls_1_1program =
 [
-    [ "program", "classgls_1_1program.html#ac22da204c9d1580d094bc37b41ee6a5a", null ],
     [ "name", "classgls_1_1program.html#a4854c785616be504e5b5a03ea3802ce0", null ],
     [ "link", "classgls_1_1program.html#a24aed743af3a7b03689103537034c565", null ],
     [ "get_info_log", "classgls_1_1program.html#a24dfeefb5bc6a4097982c9d8d75ae479", null ],
@@ -12,9 +11,8 @@ var classgls_1_1program =
     [ "get_uniform_location", "classgls_1_1program.html#ac8fb8baf677a5a8670c93f0b5f66dc84", null ],
     [ "get_uniform_type", "classgls_1_1program.html#abad2ecd82f0f3dd500f7534c1e185a19", null ],
     [ "get_uniform_size", "classgls_1_1program.html#a6a3cbebdabd80a3162d3356a7bf3dc49", null ],
-    [ "get_uniform_block_binding", "classgls_1_1program.html#a83621ec15066f1e91a888a6124644419", null ],
+    [ "get_uniform_block_index", "classgls_1_1program.html#afd0ceacd8eaf97b94d5f12a49b14616a", null ],
     [ "get_uniform_block_size", "classgls_1_1program.html#a7523950d6f58e97e9c9d942a7eb545b9", null ],
-    [ "no_block_binding", "classgls_1_1program.html#a3c4d75ae7a40a6c458335467a70100e1", null ],
     [ "uniform", "classgls_1_1program.html#a0ae3eda3a4e2e53df90b8ffc8b1ba76e", null ],
     [ "uniform", "classgls_1_1program.html#a78368e1dea33e3a8ffaec45cbf5c8019", null ],
     [ "uniform", "classgls_1_1program.html#aca474dd3dd11625cb9591112a16b155d", null ],
