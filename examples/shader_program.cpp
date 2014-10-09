@@ -76,12 +76,12 @@ int main() {
   }
 
   {
-		// Grab the binding of a "non_existant" uniform block
-		auto non_existant_block_binding = program.get_uniform_block_binding( "non_existant" );
-		if( non_existant_block_binding == program.no_block_binding() ) {
-			std::cout << "Could not get binding of uniform block \"non_existant\" in the program." << std::endl;
+		// Grab the index of a "non_existant" uniform block
+		auto non_existant_block_index = program.get_uniform_block_index( "non_existant" );
+		if( non_existant_block_index == GL_INVALID_INDEX ) {
+			std::cout << "Could not get index of uniform block \"non_existant\" in the program." << std::endl;
 		} else {
-			std::cout << "Binding for uniform block \"non_existant\" is " << non_existant_block_binding << "." << std::endl;
+			std::cout << "Index for uniform block \"non_existant\" is " << non_existant_block_index << "." << std::endl;
 		}
   }
 

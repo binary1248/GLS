@@ -36,14 +36,6 @@ namespace priv {
 class program {
 public:
 	//////////////////////////////////////////////////////////////////////////////
-	/// \brief Default constructor
-	///
-	//////////////////////////////////////////////////////////////////////////////
-	program() {
-		check_gl_error( glGetIntegerv( GL_MAX_UNIFORM_BUFFER_BINDINGS, &m_max_uniform_buffer_bindings ) );
-	}
-
-	//////////////////////////////////////////////////////////////////////////////
 	/// \brief Retrieve the OpenGL name of this program
 	///
 	/// \return OpenGL name of this program
@@ -267,22 +259,21 @@ public:
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
-	/// \brief Get the binding point of a uniform block
+	/// \brief Get the index of a uniform block
 	///
-	/// After linking, all uniform blocks are bound to unique binding points. You
-	/// can query the program for the binding point mapped to each block using
-	/// this method. You can use the binding point to set the source buffer of the
-	/// block that data should originate from when the program is run.
+	/// After linking, you can query the program for the index of a uniform block.
+	/// You can bind the index to a binding point which is then used to specify
+	/// the location inside a buffer for the block to source its data from.
 	///
 	/// \param uniform_block_name Name of the uniform block
-	/// \return Binding point mapped to the uniform block, or no_block_binding() if the block does not exist
+	/// \return Index of the uniform block, or GL_INVALID_INDEX if the block does not exist
 	///
 	//////////////////////////////////////////////////////////////////////////////
-	GLuint get_uniform_block_binding( const std::string& uniform_block_name ) const {
+	GLuint get_uniform_block_index( const std::string& uniform_block_name ) const {
 		const auto iter = m_uniform_block_map.find( uniform_block_name );
 
 		if( iter == std::end( m_uniform_block_map ) ) {
-			return no_block_binding();
+			return GL_INVALID_INDEX;
 		}
 
 		return std::get<0>( iter->second );
@@ -306,16 +297,6 @@ public:
 		}
 
 		return std::get<1>( iter->second );
-	}
-
-	//////////////////////////////////////////////////////////////////////////////
-	/// \brief Value to indicate a non-existant block binding
-	///
-	/// \return Value that corresponds to a non-existant block binding
-	///
-	//////////////////////////////////////////////////////////////////////////////
-	GLuint no_block_binding() const {
-		return static_cast<GLuint>( m_max_uniform_buffer_bindings );
 	}
 
 	/// @cond
@@ -870,15 +851,6 @@ private:
 
 			auto uniform_block_name = std::vector<GLchar>( static_cast<std::size_t>( active_uniform_block_max_name_length ), 0 );
 
-#if !defined( NDEBUG )
-			if( active_uniform_blocks > m_max_uniform_buffer_bindings ) {
-				GLS_ERROR_STREAM << "Error: Couldn't bind all uniform blocks." << std::endl;
-				GLS_ERROR_STREAM << "Active blocks: " << active_uniform_blocks << " Max bindings: " << m_max_uniform_buffer_bindings << std::endl;
-
-				active_uniform_blocks = m_max_uniform_buffer_bindings;
-			}
-#endif
-
 			for( GLuint index = 0; index < static_cast<GLuint>( active_uniform_blocks ); ++index ) {
 				auto uniform_block_size = GLint();
 
@@ -894,8 +866,6 @@ private:
 	std::unordered_map<std::string, std::tuple<GLint, GLenum, GLint>> m_attribute_map;
 	std::unordered_map<std::string, std::tuple<GLint, GLenum, GLint>> m_uniform_map;
 	std::unordered_map<std::string, std::tuple<GLuint, GLint>> m_uniform_block_map;
-
-	GLint m_max_uniform_buffer_bindings = 0;
 };
 
 }
@@ -913,16 +883,11 @@ private:
 /// log for the cause. Upon successful linking, all attribute, uniform and
 /// uniform block information is queried and cached within the gls::program.
 ///
-/// To retrieve attribute and uniform locations, use the
-/// get_attribute_location() and get_uniform_location() methods. In addition to
-/// that, you can query the size and data type of each attribute and uniform.
-///
-/// When successfully linked, the gls::program also automatically maps each
-/// active uniform block to its own binding point. If there are more active
-/// uniform blocks than there are bindings supported on the hardware, only
-/// the first blocks that are reported by the GL which can fit are bound. When
-/// running in a debug configuration, a warning should also be output to the
-/// standard error stream.
+/// To retrieve attribute and uniform locations as well as uniform block
+/// indices, use the get_attribute_location(), get_uniform_location() and
+/// get_uniform_block_index() methods. In addition to that, you can query the
+/// size and data type of each attribute and uniform and the size of a uniform
+/// block by using the respective methods.
 ///
 /// To set uniform values, a thin convenience wrapper is provided on top of the
 /// OpenGL interface. Where possible, overloading is used instead of explicitly
