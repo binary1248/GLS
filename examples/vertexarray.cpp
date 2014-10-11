@@ -8,6 +8,7 @@
 #include <gls.hpp>
 
 #include <vector>
+#include <iostream>
 
 int main() {
 	sf::Window window( { 200, 200 }, "Vertex Array Example", sf::Style::Default, sf::ContextSettings( 0, 0, 0, 3, 2, false, false ) );

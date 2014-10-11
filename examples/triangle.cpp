@@ -8,6 +8,7 @@
 #include <gls.hpp>
 
 #include <vector>
+#include <iostream>
 #include <cmath>
 
 int main() {

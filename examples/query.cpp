@@ -9,6 +9,7 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
 
 int main() {
 	sf::Window window( { 400, 400 }, "Query Example", sf::Style::Default, sf::ContextSettings( 0, 0, 0, 3, 2, false, false ) );
