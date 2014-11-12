@@ -56,6 +56,7 @@ set(
 	"${INCLUDE_PATH}/gls/objects/sync.hpp"
 	"${INCLUDE_PATH}/gls/objects/texture.hpp"
 	"${INCLUDE_PATH}/gls/objects/vertexarray.hpp"
+	"${INCLUDE_PATH}/gls/utilities/camera.hpp"
 )
 
 file( READ "${INCLUDE_PATH}/gls.hpp" GLS_HPP )

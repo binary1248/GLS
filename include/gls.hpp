@@ -5,7 +5,7 @@
 #pragma once
 
 #define GLS_MAJOR_VERSION 1
-#define GLS_MINOR_VERSION 0
+#define GLS_MINOR_VERSION 1
 #define GLS_PATCH_VERSION 0
 
 // OpenGL object containers
@@ -21,3 +21,4 @@
 #include <gls/objects/sync.hpp>
 
 // Utility classes
+#include <gls/utilities/camera.hpp>

@@ -36,6 +36,7 @@ function( build_example EXAMPLE_NAME SOURCES )
 endfunction()
 
 build_example( "buffer" "buffer.cpp" )
+build_example( "camera" "camera.cpp" )
 build_example( "framebuffer_renderbuffer" "framebuffer_renderbuffer.cpp" )
 build_example( "query" "query.cpp" )
 build_example( "shader_program" "shader_program.cpp" )
