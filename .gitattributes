@@ -1,1 +1,3 @@
 * text=auto eol=lf
+doc/* linguist-vendored
+examples/gl_core_3_2/* linguist-vendored
