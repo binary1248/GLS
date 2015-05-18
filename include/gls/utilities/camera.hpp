@@ -276,7 +276,7 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////////
 	void move( vector_type offset ) {
-		set_position( { m_position[0] + offset[0], m_position[1] + offset[1], m_position[2] + offset[2] } );
+		set_position( { { m_position[0] + offset[0], m_position[1] + offset[1], m_position[2] + offset[2] } } );
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
@@ -291,7 +291,7 @@ public:
 	void move_relative( vector_type offset ) {
 		const auto right_vector = vector_normalize( vector_cross( m_direction, m_up ) );
 
-		vector_type delta{ -m_direction[0] * offset[2], -m_direction[1] * offset[2], -m_direction[2] * offset[2] };
+		vector_type delta{ { -m_direction[0] * offset[2], -m_direction[1] * offset[2], -m_direction[2] * offset[2] } };
 
 		delta[0] += m_up[0] * offset[1] - right_vector[0] * offset[0];
 		delta[1] += m_up[1] * offset[1] - right_vector[1] * offset[0];
@@ -348,50 +348,50 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////////
 	void set_orientation_taitbryan( value_type yaw, value_type pitch, value_type roll ) {
-		auto direction = quaternion_type{ 0, 0, -1, 0 };
+		auto direction = quaternion_type{ { 0, 0, -1, 0 } };
 
 		{
-			quaternion_type rotation{
+			quaternion_type rotation{ {
 				0,
 				std::sin( -yaw / 2 ),
 				0,
 				std::cos( -yaw / 2 )
-			};
+			} };
 
 			direction = quaternion_multiply( quaternion_multiply( rotation, direction ), quaternion_conjugate( rotation ) );
 			direction = quaternion_normalize( direction );
 		}
 
-		const auto right = vector_normalize( vector_cross( { 0, 1, 0 }, { direction[0], direction[1], direction[2] } ) );
+		const auto right = vector_normalize( vector_cross( { { 0, 1, 0 } }, { { direction[0], direction[1], direction[2] } } ) );
 
 		{
-			quaternion_type rotation{
+			quaternion_type rotation{ {
 				right[0] * std::sin( pitch / 2 ),
 				right[1] * std::sin( pitch / 2 ),
 				right[2] * std::sin( pitch / 2 ),
 				std::cos( pitch / 2 )
-			};
+			} };
 
 			direction = quaternion_multiply( quaternion_multiply( rotation, direction ), quaternion_conjugate( rotation ) );
 		}
 
-		m_direction = vector_normalize( { direction[0], direction[1], direction[2] } );
+		m_direction = vector_normalize( { { direction[0], direction[1], direction[2] } } );
 
 		const auto up_vector = vector_normalize( vector_cross( m_direction, right ) );
-		auto up_quaternion = quaternion_type{ up_vector[0], up_vector[1], up_vector[2], 0 };
+		auto up_quaternion = quaternion_type{ { up_vector[0], up_vector[1], up_vector[2], 0 } };
 
 		{
-			quaternion_type rotation{
+			quaternion_type rotation{ {
 				m_direction[0] * std::sin( roll / 2 ),
 				m_direction[1] * std::sin( roll / 2 ),
 				m_direction[2] * std::sin( roll / 2 ),
 				std::cos( roll / 2 )
-			};
+			} };
 
 			up_quaternion = quaternion_multiply( quaternion_multiply( rotation, up_quaternion ), quaternion_conjugate( rotation ) );
 		}
 
-		m_up = vector_normalize( { up_quaternion[0], up_quaternion[1], up_quaternion[2] } );
+		m_up = vector_normalize( { { up_quaternion[0], up_quaternion[1], up_quaternion[2] } } );
 
 		m_view_dirty = true;
 		m_matrix_dirty = true;
@@ -442,7 +442,7 @@ private:
 
 	static vector_type vector_normalize( const vector_type& v ) {
 		auto length = vector_length( v );
-		return vector_type{ v[0] / length, v[1] / length, v[2] / length };
+		return vector_type{ { v[0] / length, v[1] / length, v[2] / length } };
 	}
 
 	static value_type vector_dot( const vector_type& v, const vector_type& w ) {
@@ -450,11 +450,11 @@ private:
 	}
 
 	static vector_type vector_cross( const vector_type& v, const vector_type& w ) {
-		return {
+		return { {
 			v[1] * w[2] - v[2] * w[1],
 			v[2] * w[0] - v[0] * w[2],
 			v[0] * w[1] - v[1] * w[0]
-		};
+		} };
 	}
 
 	static value_type quaternion_length( const quaternion_type& q ) {
@@ -463,24 +463,24 @@ private:
 
 	static quaternion_type quaternion_normalize( const quaternion_type& q ) {
 		auto length = quaternion_length( q );
-		return quaternion_type{ q[0] / length, q[1] / length, q[2] / length, q[3] / length };
+		return quaternion_type{ { q[0] / length, q[1] / length, q[2] / length, q[3] / length } };
 	}
 
 	static quaternion_type quaternion_conjugate( const quaternion_type& q ) {
-		return quaternion_type{ -q[0], -q[1], -q[2], q[3] };
+		return quaternion_type{ { -q[0], -q[1], -q[2], q[3] } };
 	}
 
 	static quaternion_type quaternion_multiply( const quaternion_type& q, const quaternion_type& r ) {
-		return quaternion_type{
+		return quaternion_type{ {
 			q[0] * r[3] + q[3] * r[0] + q[1] * r[2] - q[2] * r[1],
 			q[1] * r[3] + q[3] * r[1] + q[2] * r[0] - q[0] * r[2],
 			q[2] * r[3] + q[3] * r[2] + q[0] * r[1] - q[1] * r[0],
 			q[3] * r[3] - q[0] * r[0] - q[1] * r[1] - q[2] * r[2]
-		};
+		} };
 	}
 
 	static matrix_type matrix_mult( const matrix_type& m, const matrix_type& n ) {
-		return {
+		return { {
 			m[0] * n[0] + m[4] * n[1] + m[8] * n[2] + m[12] * n[3],
 			m[1] * n[0] + m[5] * n[1] + m[9] * n[2] + m[13] * n[3],
 			m[2] * n[0] + m[6] * n[1] + m[10] * n[2] + m[14] * n[3],
@@ -497,18 +497,18 @@ private:
 			m[1] * n[12] + m[5] * n[13] + m[9] * n[14] + m[13] * n[15],
 			m[2] * n[12] + m[6] * n[13] + m[10] * n[14] + m[14] * n[15],
 			m[3] * n[12] + m[7] * n[13] + m[11] * n[14] + m[15] * n[15]
-		};
+		} };
 	}
 
 	void update() const {
 		// Update projection matrix
 		if( m_projection_dirty ) {
-			m_projection = {
+			m_projection = { {
 				1 / ( m_aspect * std::tan( m_fov / 2 ) ), 0, 0, 0,
 				0, 1 / std::tan( m_fov / 2 ), 0, 0,
 				0, 0, -( m_far + m_near ) / ( m_far - m_near ), -1,
 				0, 0, -( 2 * m_far * m_near ) / ( m_far - m_near ), 0
-			};
+			} };
 
 			m_projection_dirty = false;
 		}
@@ -519,19 +519,19 @@ private:
 			const auto s = vector_normalize( vector_cross( m_direction, m_up ) );
 			const auto u = vector_cross( s, d );
 
-			m_view = {
+			m_view = { {
 				s[0], u[0], -d[0], 0,
 				s[1], u[1], -d[1], 0,
 				s[2], u[2], -d[2], 0,
 				0, 0, 0, 1
-			};
+			} };
 
-			m_view = matrix_mult( m_view, {
+			m_view = matrix_mult( m_view, { {
 				1, 0, 0, 0,
 				0, 1, 0, 0,
 				0, 0, 1, 0,
 				-m_position[0], -m_position[1], -m_position[2], 1
-			} );
+			} } );
 
 			m_view_dirty = false;
 		}
