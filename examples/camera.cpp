@@ -137,10 +137,10 @@ int main() {
 		}
 
 		// Move the camera relative to its own coordinate system
-		camera.move_relative( { right, 0, -forward } );
+		camera.move_relative( { { right, 0, -forward } } );
 
 		// Move the camera relative to the global coordinate system
-		camera.move( { 0, up, 0 } );
+		camera.move( { { 0, up, 0 } } );
 
 		// Mouse cursor management
 		if( mouse_lock ) {
