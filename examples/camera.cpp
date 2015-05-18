@@ -11,7 +11,7 @@
 #include <iostream>
 
 int main() {
-	sf::Window window( { 600, 600 }, "Camera Example - FPS controls - E to unlock mouse", sf::Style::Default, sf::ContextSettings( 0, 0, 0, 3, 2, false, false ) );
+	sf::Window window( { 600, 600 }, "Camera Example - FPS controls - E to unlock mouse", sf::Style::Default, sf::ContextSettings( 0, 0, 0, 3, 2, sf::ContextSettings::Core ) );
 	ogl_LoadFunctions();
 
 	// Create and compile the vertex shader

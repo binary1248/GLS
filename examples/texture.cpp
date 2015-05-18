@@ -10,7 +10,7 @@
 #include <vector>
 
 int main() {
-	sf::Window window( { 200, 200 }, "Texture Example", sf::Style::Default, sf::ContextSettings( 0, 0, 0, 3, 2, false, false ) );
+	sf::Window window( { 200, 200 }, "Texture Example", sf::Style::Default, sf::ContextSettings( 0, 0, 0, 3, 2, sf::ContextSettings::Core ) );
 	ogl_LoadFunctions();
 
 	// Create a texture object

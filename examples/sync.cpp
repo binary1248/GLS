@@ -13,7 +13,7 @@
 #include <iostream>
 
 int main() {
-	sf::Window window( { 400, 200 }, "Sync Example", sf::Style::Default, sf::ContextSettings( 0, 0, 0, 3, 2, false, false ) );
+	sf::Window window( { 400, 200 }, "Sync Example", sf::Style::Default, sf::ContextSettings( 0, 0, 0, 3, 2, sf::ContextSettings::Core ) );
 	ogl_LoadFunctions();
 
 	// Create our sync object;
