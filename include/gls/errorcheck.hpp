@@ -5,6 +5,7 @@
 #pragma once
 
 #include <gls/headercheck.hpp>
+#include <cstring>
 
 #if defined( _WIN32 )
 	#define __FILENAME__ (strrchr(__FILE__, '\\') ? strrchr(__FILE__, '\\') + 1 : __FILE__)
