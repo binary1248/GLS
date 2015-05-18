@@ -3,7 +3,7 @@ cmake_minimum_required( VERSION 2.8 )
 # Tell CMake where to find additional find modules
 set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake/Modules/" )
 
-set( SFML_STATIC_LIBRARIES true CACHE BOOL "Was SFML built as a static library?" )
+set( SFML_STATIC_LIBRARIES false CACHE BOOL "Was SFML built as a static library?" )
 
 # Find packages.
 find_package( OpenGL REQUIRED )
