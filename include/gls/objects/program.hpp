@@ -332,6 +332,17 @@ public:
 	//////////////////////////////////////////////////////////////////////////////
 	void uniform( const std::string& uniform_name, GLuint v0 ) { use(); check_gl_error( glUniform1ui( get_uniform_location( uniform_name ), v0 ) ); unuse(); };
 
+	//////////////////////////////////////////////////////////////////////////////
+	/// \brief Set a 1-component uniform value
+	///
+	/// Set a 1-component uniform with the given name to the given value.
+	///
+	/// \param uniform_name Name of the uniform to set
+	/// \param v0 First component
+	///
+	//////////////////////////////////////////////////////////////////////////////
+	void uniform( const std::string& uniform_name, bool v0 ) { use(); check_gl_error( glUniform1i( get_uniform_location( uniform_name ), v0 ) ); unuse(); };
+
 	/// @cond
 	template<typename T>
 	void uniform( const std::string& uniform_name, T v0, T v1 ) = delete;
@@ -372,6 +383,18 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////////
 	void uniform( const std::string& uniform_name, GLuint v0, GLuint v1 ) { use(); check_gl_error( glUniform2ui( get_uniform_location( uniform_name ), v0, v1 ) ); unuse(); };
+
+	//////////////////////////////////////////////////////////////////////////////
+	/// \brief Set a 2-component uniform value
+	///
+	/// Set a 2-component uniform with the given name to the given value.
+	///
+	/// \param uniform_name Name of the uniform to set
+	/// \param v0 First component
+	/// \param v1 Second component
+	///
+	//////////////////////////////////////////////////////////////////////////////
+	void uniform( const std::string& uniform_name, bool v0, bool v1 ) { use(); check_gl_error( glUniform2i( get_uniform_location( uniform_name ), v0, v1 ) ); unuse(); };
 
 	/// @cond
 	template<typename T>
@@ -416,6 +439,19 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////////
 	void uniform( const std::string& uniform_name, GLuint v0, GLuint v1, GLuint v2 ) { use(); check_gl_error( glUniform3ui( get_uniform_location( uniform_name ), v0, v1, v2 ) ); unuse(); };
+
+	//////////////////////////////////////////////////////////////////////////////
+	/// \brief Set a 3-component uniform value
+	///
+	/// Set a 3-component uniform with the given name to the given value.
+	///
+	/// \param uniform_name Name of the uniform to set
+	/// \param v0 First component
+	/// \param v1 Second component
+	/// \param v2 Third component
+	///
+	//////////////////////////////////////////////////////////////////////////////
+	void uniform( const std::string& uniform_name, bool v0, bool v1, bool v2 ) { use(); check_gl_error( glUniform3i( get_uniform_location( uniform_name ), v0, v1, v2 ) ); unuse(); };
 
 	/// @cond
 	template<typename T>
@@ -463,6 +499,20 @@ public:
 	///
 	//////////////////////////////////////////////////////////////////////////////
 	void uniform( const std::string& uniform_name, GLuint v0, GLuint v1, GLuint v2, GLuint v3 ) { use(); check_gl_error( glUniform4ui( get_uniform_location( uniform_name ), v0, v1, v2, v3 ) ); unuse(); };
+
+	//////////////////////////////////////////////////////////////////////////////
+	/// \brief Set a 4-component uniform value
+	///
+	/// Set a 4-component uniform with the given name to the given value.
+	///
+	/// \param uniform_name Name of the uniform to set
+	/// \param v0 First component
+	/// \param v1 Second component
+	/// \param v2 Third component
+	/// \param v3 Fourth component
+	///
+	//////////////////////////////////////////////////////////////////////////////
+	void uniform( const std::string& uniform_name, bool v0, bool v1, bool v2, bool v3 ) { use(); check_gl_error( glUniform4i( get_uniform_location( uniform_name ), v0, v1, v2, v3 ) ); unuse(); };
 
 	//////////////////////////////////////////////////////////////////////////////
 	/// \brief Set an array of 1-component uniform values
