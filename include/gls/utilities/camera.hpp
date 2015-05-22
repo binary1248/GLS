@@ -352,10 +352,10 @@ public:
 
 		{
 			quaternion_type rotation{ {
-					0,
-					std::sin( -yaw / 2 ),
-					0,
-					std::cos( -yaw / 2 )
+				0,
+				std::sin( -yaw / 2 ),
+				0,
+				std::cos( -yaw / 2 )
 			} };
 
 			direction = quaternion_multiply( quaternion_multiply( rotation, direction ), quaternion_conjugate( rotation ) );
@@ -366,10 +366,10 @@ public:
 
 		{
 			quaternion_type rotation{ {
-					right[0] * std::sin( pitch / 2 ),
-					right[1] * std::sin( pitch / 2 ),
-					right[2] * std::sin( pitch / 2 ),
-					std::cos( pitch / 2 )
+				right[0] * std::sin( pitch / 2 ),
+				right[1] * std::sin( pitch / 2 ),
+				right[2] * std::sin( pitch / 2 ),
+				std::cos( pitch / 2 )
 			} };
 
 			direction = quaternion_multiply( quaternion_multiply( rotation, direction ), quaternion_conjugate( rotation ) );
@@ -382,10 +382,10 @@ public:
 
 		{
 			quaternion_type rotation{ {
-					m_direction[0] * std::sin( roll / 2 ),
-					m_direction[1] * std::sin( roll / 2 ),
-					m_direction[2] * std::sin( roll / 2 ),
-					std::cos( roll / 2 )
+				m_direction[0] * std::sin( roll / 2 ),
+				m_direction[1] * std::sin( roll / 2 ),
+				m_direction[2] * std::sin( roll / 2 ),
+				std::cos( roll / 2 )
 			} };
 
 			up_quaternion = quaternion_multiply( quaternion_multiply( rotation, up_quaternion ), quaternion_conjugate( rotation ) );
@@ -451,9 +451,9 @@ private:
 
 	static vector_type vector_cross( const vector_type& v, const vector_type& w ) {
 		return { {
-				v[1] * w[2] - v[2] * w[1],
-				v[2] * w[0] - v[0] * w[2],
-				v[0] * w[1] - v[1] * w[0]
+			v[1] * w[2] - v[2] * w[1],
+			v[2] * w[0] - v[0] * w[2],
+			v[0] * w[1] - v[1] * w[0]
 		} };
 	}
 
@@ -472,31 +472,31 @@ private:
 
 	static quaternion_type quaternion_multiply( const quaternion_type& q, const quaternion_type& r ) {
 		return quaternion_type{ {
-				q[0] * r[3] + q[3] * r[0] + q[1] * r[2] - q[2] * r[1],
-				q[1] * r[3] + q[3] * r[1] + q[2] * r[0] - q[0] * r[2],
-				q[2] * r[3] + q[3] * r[2] + q[0] * r[1] - q[1] * r[0],
-				q[3] * r[3] - q[0] * r[0] - q[1] * r[1] - q[2] * r[2]
+			q[0] * r[3] + q[3] * r[0] + q[1] * r[2] - q[2] * r[1],
+			q[1] * r[3] + q[3] * r[1] + q[2] * r[0] - q[0] * r[2],
+			q[2] * r[3] + q[3] * r[2] + q[0] * r[1] - q[1] * r[0],
+			q[3] * r[3] - q[0] * r[0] - q[1] * r[1] - q[2] * r[2]
 		} };
 	}
 
 	static matrix_type matrix_mult( const matrix_type& m, const matrix_type& n ) {
 		return { {
-				m[0] * n[0] + m[4] * n[1] + m[8] * n[2] + m[12] * n[3],
-				m[1] * n[0] + m[5] * n[1] + m[9] * n[2] + m[13] * n[3],
-				m[2] * n[0] + m[6] * n[1] + m[10] * n[2] + m[14] * n[3],
-				m[3] * n[0] + m[7] * n[1] + m[11] * n[2] + m[15] * n[3],
-				m[0] * n[4] + m[4] * n[5] + m[8] * n[6] + m[12] * n[7],
-				m[1] * n[4] + m[5] * n[5] + m[9] * n[6] + m[13] * n[7],
-				m[2] * n[4] + m[6] * n[5] + m[10] * n[6] + m[14] * n[7],
-				m[3] * n[4] + m[7] * n[5] + m[11] * n[6] + m[15] * n[7],
-				m[0] * n[8] + m[4] * n[9] + m[8] * n[10] + m[12] * n[11],
-				m[1] * n[8] + m[5] * n[9] + m[9] * n[10] + m[13] * n[11],
-				m[2] * n[8] + m[6] * n[9] + m[10] * n[10] + m[14] * n[11],
-				m[3] * n[8] + m[7] * n[9] + m[11] * n[10] + m[15] * n[11],
-				m[0] * n[12] + m[4] * n[13] + m[8] * n[14] + m[12] * n[15],
-				m[1] * n[12] + m[5] * n[13] + m[9] * n[14] + m[13] * n[15],
-				m[2] * n[12] + m[6] * n[13] + m[10] * n[14] + m[14] * n[15],
-				m[3] * n[12] + m[7] * n[13] + m[11] * n[14] + m[15] * n[15]
+			m[0] * n[0] + m[4] * n[1] + m[8] * n[2] + m[12] * n[3],
+			m[1] * n[0] + m[5] * n[1] + m[9] * n[2] + m[13] * n[3],
+			m[2] * n[0] + m[6] * n[1] + m[10] * n[2] + m[14] * n[3],
+			m[3] * n[0] + m[7] * n[1] + m[11] * n[2] + m[15] * n[3],
+			m[0] * n[4] + m[4] * n[5] + m[8] * n[6] + m[12] * n[7],
+			m[1] * n[4] + m[5] * n[5] + m[9] * n[6] + m[13] * n[7],
+			m[2] * n[4] + m[6] * n[5] + m[10] * n[6] + m[14] * n[7],
+			m[3] * n[4] + m[7] * n[5] + m[11] * n[6] + m[15] * n[7],
+			m[0] * n[8] + m[4] * n[9] + m[8] * n[10] + m[12] * n[11],
+			m[1] * n[8] + m[5] * n[9] + m[9] * n[10] + m[13] * n[11],
+			m[2] * n[8] + m[6] * n[9] + m[10] * n[10] + m[14] * n[11],
+			m[3] * n[8] + m[7] * n[9] + m[11] * n[10] + m[15] * n[11],
+			m[0] * n[12] + m[4] * n[13] + m[8] * n[14] + m[12] * n[15],
+			m[1] * n[12] + m[5] * n[13] + m[9] * n[14] + m[13] * n[15],
+			m[2] * n[12] + m[6] * n[13] + m[10] * n[14] + m[14] * n[15],
+			m[3] * n[12] + m[7] * n[13] + m[11] * n[14] + m[15] * n[15]
 		} };
 	}
 
@@ -504,10 +504,10 @@ private:
 		// Update projection matrix
 		if( m_projection_dirty ) {
 			m_projection = { {
-					1 / ( m_aspect * std::tan( m_fov / 2 ) ), 0, 0, 0,
-					0, 1 / std::tan( m_fov / 2 ), 0, 0,
-					0, 0, -( m_far + m_near ) / ( m_far - m_near ), -1,
-					0, 0, -( 2 * m_far * m_near ) / ( m_far - m_near ), 0
+				1 / ( m_aspect * std::tan( m_fov / 2 ) ), 0, 0, 0,
+				0, 1 / std::tan( m_fov / 2 ), 0, 0,
+				0, 0, -( m_far + m_near ) / ( m_far - m_near ), -1,
+				0, 0, -( 2 * m_far * m_near ) / ( m_far - m_near ), 0
 			} };
 
 			m_projection_dirty = false;
@@ -520,17 +520,17 @@ private:
 			const auto u = vector_cross( s, d );
 
 			m_view = { {
-					s[0], u[0], -d[0], 0,
-					s[1], u[1], -d[1], 0,
-					s[2], u[2], -d[2], 0,
-					0, 0, 0, 1
+				s[0], u[0], -d[0], 0,
+				s[1], u[1], -d[1], 0,
+				s[2], u[2], -d[2], 0,
+				0, 0, 0, 1
 			} };
 
 			m_view = matrix_mult( m_view, { {
-					1, 0, 0, 0,
-					0, 1, 0, 0,
-					0, 0, 1, 0,
-					-m_position[0], -m_position[1], -m_position[2], 1
+				1, 0, 0, 0,
+				0, 1, 0, 0,
+				0, 0, 1, 0,
+				-m_position[0], -m_position[1], -m_position[2], 1
 			} } );
 
 			m_view_dirty = false;
