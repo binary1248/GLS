@@ -47,11 +47,11 @@ int main() {
 	// Create and link the program
 	auto program = gls::program();
 
-  if( !program.link( vertex_shader, fragment_shader ) ) {
+	if( !program.link( vertex_shader, fragment_shader ) ) {
 		std::cout << "Program link failed." << std::endl;
-  }
+	}
 
-  auto buffer = gls::buffer<GL_ARRAY_BUFFER, GL_DYNAMIC_DRAW>();
+	auto buffer = gls::buffer<GL_ARRAY_BUFFER, GL_DYNAMIC_DRAW>();
 
 	// Write some data into the buffer object
 	auto buffer_data = std::vector<float>();

@@ -50,12 +50,12 @@ int main() {
 	// Create and link a program
 	auto program = gls::program();
 
-  if( !program.link( vertex_shader, fragment_shader ) ) {
+	if( !program.link( vertex_shader, fragment_shader ) ) {
 		std::cout << "Program link failed." << std::endl;
 		std::cout << program.get_info_log() << std::endl;
-  }
+	}
 
-  {
+	{
 		// Grab the location of our "position" attribute
 		auto position_location = program.get_attribute_location( "position" );
 		if( position_location < 0 ) {
@@ -63,9 +63,9 @@ int main() {
 		} else {
 			std::cout << "Attribute \"position\" is located at " << position_location << "." << std::endl;
 		}
-  }
+	}
 
-  {
+	{
 		// Grab the location of our "color" uniform
 		auto color_location = program.get_uniform_location( "color" );
 		if( color_location < 0 ) {
@@ -73,9 +73,9 @@ int main() {
 		} else {
 			std::cout << "Uniform \"color\" is located at " << color_location << "." << std::endl;
 		}
-  }
+	}
 
-  {
+	{
 		// Grab the index of a "non_existant" uniform block
 		auto non_existant_block_index = program.get_uniform_block_index( "non_existant" );
 		if( non_existant_block_index == GL_INVALID_INDEX ) {
@@ -83,15 +83,15 @@ int main() {
 		} else {
 			std::cout << "Index for uniform block \"non_existant\" is " << non_existant_block_index << "." << std::endl;
 		}
-  }
+	}
 
-  // Use the program to render stuff
-  program.use();
+	// Use the program to render stuff
+	program.use();
 
-  // Stuff...
+	// Stuff...
 
-  // Unuse the program when needed
-  program.unuse();
+	// Unuse the program when needed
+	program.unuse();
 
 	while( window.isOpen() ) {
 		auto event = sf::Event();

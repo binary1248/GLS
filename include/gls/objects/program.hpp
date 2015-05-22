@@ -57,11 +57,6 @@ public:
 	/// After linking successfully, all attribute, uniform and block information
 	/// will be extracted from the program.
 	///
-	/// Uniform blocks will automatically be bound to a unique binding point which
-	/// can be queried with get_uniform_block_binding(). If there are more blocks
-	/// present in a program than there are binding points, an assertion will
-	/// terminate the application.
-	///
 	/// \param shaders Variable collection of shaders to link to this program
 	/// \return true if linking was successful, false otherwise
 	///
@@ -754,11 +749,11 @@ public:
 private:
 	/// @cond
 	struct pass {
-    template<typename ...T>
-    pass( T... ) {
-    }
-  };
-  /// @endcond
+		template<typename ...T>
+		pass( T... ) {
+		}
+	};
+	/// @endcond
 
 	template<typename... Args>
 	void attach_all( Args&&... args ) {

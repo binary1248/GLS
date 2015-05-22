@@ -37,13 +37,13 @@ public:
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
-	/// \brief Retrieve the size of buffer
+	/// \brief Retrieve the size of this buffer
 	///
 	/// After calling data(), storage is allocated for the buffer by the GL. This
 	/// method returns how much storage was requested during the last allocation
 	/// that took place.
 	///
-	/// \return OpenGL name of this buffer
+	/// \return Size of this buffer
 	///
 	//////////////////////////////////////////////////////////////////////////////
 	GLsizeiptr size() const {
@@ -119,6 +119,8 @@ public:
 		if( data_ptr ) {
 			sub_data( 0, m_size, data_ptr );
 		}
+
+		unbind();
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
