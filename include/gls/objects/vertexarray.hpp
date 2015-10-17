@@ -68,8 +68,8 @@ public:
 	/// \param offset Byte offset into the buffer where the first element is located
 	///
 	//////////////////////////////////////////////////////////////////////////////
-	template<GLenum BufferType, typename T, typename U>
-	void bind_attribute( const program& the_program, const std::string& attribute_name, const buffer<BufferType>& the_buffer, GLint size, GLenum type, GLboolean normalized, T stride, U offset ) {
+	template<GLenum BufferTarget, GLenum BufferUsage, typename T, typename U>
+	void bind_attribute( const program& the_program, const std::string& attribute_name, const buffer<BufferTarget, BufferUsage>& the_buffer, GLint size, GLenum type, GLboolean normalized, T stride, U offset ) {
 		auto attribute_location = the_program.get_attribute_location( attribute_name );
 
 		if( attribute_location < 0 ) {
@@ -97,8 +97,8 @@ public:
 	/// \param offset Byte offset into the buffer where the first element is located
 	///
 	//////////////////////////////////////////////////////////////////////////////
-	template<GLenum BufferType, typename T, typename U>
-	void bind_attribute( GLuint attribute_location, const buffer<BufferType>& the_buffer, GLint size, GLenum type, GLboolean normalized, T stride, U offset ) {
+	template<GLenum BufferTarget, GLenum BufferUsage, typename T, typename U>
+	void bind_attribute( GLuint attribute_location, const buffer<BufferTarget, BufferUsage>& the_buffer, GLint size, GLenum type, GLboolean normalized, T stride, U offset ) {
 		bind();
 		check_gl_error( glBindBuffer( GL_ARRAY_BUFFER, the_buffer.name() ) );
 		check_gl_error( glEnableVertexAttribArray( attribute_location ) );
@@ -185,8 +185,8 @@ public:
 	/// \param the_buffer The index buffer to bind to this vertex array
 	///
 	//////////////////////////////////////////////////////////////////////////////
-	template<GLenum BufferType>
-	void bind_index_buffer( const buffer<BufferType>& the_buffer ) {
+	template<GLenum BufferTarget, GLenum BufferUsage>
+	void bind_index_buffer( const buffer<BufferTarget, BufferUsage>& the_buffer ) {
 		bind();
 		check_gl_error( glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, the_buffer.name() ) );
 		unbind();
